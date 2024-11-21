@@ -1,7 +1,15 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useUser } from "../../Context/UserContext";
 
 export default function Header() {
+  const { user, setUser } = useUser();
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    setUser(null); // Clear the user data on logout
+    navigate("/login");
+  };
   return (
     <header className="shadow sticky z-50   top-0">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
@@ -14,12 +22,21 @@ export default function Header() {
             />
           </Link>
           <div className="flex items-center lg:order-2">
-            <Link
-              to="#"
-              className="text-yellow-400 hover:bg-yellow-5 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-            >
-              Log in
-            </Link>
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="text-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+              >
+                Log in
+              </Link>
+            )}
             <Link
               to="#"
               className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
@@ -36,7 +53,7 @@ export default function Header() {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 
+                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"
@@ -51,7 +68,7 @@ export default function Header() {
                 <NavLink
                   to="/about"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 
+                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"
@@ -66,7 +83,7 @@ export default function Header() {
                 <NavLink
                   to="/company"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 
+                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"
@@ -81,7 +98,7 @@ export default function Header() {
                 <NavLink
                   to="/github"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 
+                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"
@@ -96,7 +113,7 @@ export default function Header() {
                 <NavLink
                   to="/user"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 
+                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"

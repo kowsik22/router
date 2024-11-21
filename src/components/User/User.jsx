@@ -1,13 +1,14 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useUser } from "../../Context/UserContext";
 
-function User() {
-  const { userid } = useParams();
+const User = () => {
+  const { user } = useUser(); // Access user details from context
+
   return (
     <div className="bg-orange-500 text-black text-3xl text-center py-5">
-      User: {userid}
+      {user ? `Welcome, ${user.name}!` : "No user logged in."}
     </div>
   );
-}
+};
 
 export default User;
