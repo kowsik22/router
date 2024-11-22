@@ -31,100 +31,294 @@ export default function Header() {
               </button>
             ) : (
               <Link
-                to="/login"
-                className="text-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                to="/"
+                className="text-white hover:bg-blue-400 bg-blue-500 border-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
               >
                 Log in
               </Link>
             )}
-            <Link
-              to="#"
-              className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-            >
-              Get started
-            </Link>
           </div>
           <div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"
           >
-            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+            {user ? (
+              <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                <li>
+                  <NavLink
+                    to="/home"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"
                                             : "text-gray-700"
                                         } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                    }
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"
                                             : "text-gray-700"
                                         } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  About
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/company"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                    }
+                  >
+                    About
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/company"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"
                                             : "text-gray-700"
                                         } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  Company
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/github"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                    }
+                  >
+                    Company
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/github"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"
                                             : "text-gray-700"
                                         } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  Github
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/user"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                    }
+                  >
+                    Github
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/user"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
                                           isActive
                                             ? "text-orange-700"
                                             : "text-gray-700"
                                         } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  User
-                </NavLink>
-              </li>
-            </ul>
+                    }
+                  >
+                    User
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/rewards"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    rewards
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/focus"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    FocusMode
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/settings"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    Settings
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/i"
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    Insights
+                  </NavLink>
+                </li>
+              </ul>
+            ) : (
+              <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                <li>
+                  <NavLink
+                    to=""
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to=""
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    About
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to=""
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    Company
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to=""
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    Github
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to=""
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    User
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to=""
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    rewards
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to=""
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    FocusMode
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to=""
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    Settings
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to=""
+                    className={({ isActive }) =>
+                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                    }
+                  >
+                    Insights
+                  </NavLink>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>
