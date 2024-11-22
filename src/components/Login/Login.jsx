@@ -35,19 +35,19 @@
 
 import React, { useState } from "react";
 import { useUser } from "../../Context/UserContext";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { setUser } = useUser();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (name && email) {
-      setUser({ name, email }); // Set user details in context
-      navigate("/user"); // Redirect to the User page
+      setUser({ name, email });
+      navigate("/user");
     }
   };
 

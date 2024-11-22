@@ -7,7 +7,7 @@ export default function Header() {
   let navigate = useNavigate();
 
   const handleLogout = () => {
-    setUser(null); // Clear the user data on logout
+    setUser(null);
     navigate("/login");
   };
   return (

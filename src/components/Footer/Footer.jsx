@@ -37,6 +37,22 @@ function Footer() {
                       About
                     </Link>
                   </li>
+                  <li className="mb-4">
+                    <Link
+                      to="/user"
+                      className="hover:text-decoration-none hover:text-blue-500"
+                    >
+                      User
+                    </Link>
+                  </li>
+                  <li className="mb-4">
+                    <Link
+                      to="/company"
+                      className="hover:text-decoration-none hover:text-blue-500"
+                    >
+                      company
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div>

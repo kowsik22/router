@@ -1,29 +1,3 @@
-/*import React from "react";
-
-const company = () => {
-  return (
-    <>
-      <h1 className="text-center text-3xl text-red-500 my-4">Company Info</h1>
-      <div className=" flex flex-grow-7  sm:gap-6  hover:cursor-pointer justify-start ">
-        <img
-          src="https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          className=" flex flex-grow "
-          alt="img"
-        ></img>
-        <img
-          src="https://images.pexels.com/photos/6794920/pexels-photo-6794920.jpeg"
-          className="min-w-7 "
-          alt="img"
-        ></img>
-      </div>
-    </>
-  );
-};
-
-export default company;
-
-*/
-
 export default function Contact() {
   return (
     <div className="relative flex items-top justify-center min-h-[700px] bg-white sm:items-center sm:pt-0">
@@ -62,7 +36,7 @@ export default function Contact() {
                   />
                 </svg>
                 <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                  Acme Inc, Street, State, Postal Code
+                  Hyderabad
                 </div>
               </div>
 
@@ -84,7 +58,7 @@ export default function Contact() {
                   />
                 </svg>
                 <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                  +44 1234567890
+                  +91 7569535734
                 </div>
               </div>
 
@@ -106,7 +80,7 @@ export default function Contact() {
                   />
                 </svg>
                 <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                  info@acme.org
+                  kowsiknarumanchi577@gmail.com
                 </div>
               </div>
             </div>
@@ -140,7 +114,7 @@ export default function Contact() {
 
               <div className="flex flex-col mt-2">
                 <label for="tel" className="hidden">
-                  Number
+                  Numb
                 </label>
                 <input
                   type="tel"
