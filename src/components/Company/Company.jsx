@@ -1,4 +1,44 @@
-export default function Contact() {
+import React, { useState } from "react";
+
+const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!name || !email || !message) {
+      setStatus("Please fill in all fields.");
+      return;
+    }
+
+    const formData = { name, email, message };
+    const endpoint = "https://formspree.io/f/xgvekzja";
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus("Your message has been sent!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setStatus("Error sending message. Please try again.");
+    }
+  };
+
   return (
     <div className="relative flex items-top justify-center min-h-[700px] bg-white sm:items-center sm:pt-0">
       <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -85,7 +125,10 @@ export default function Contact() {
               </div>
             </div>
 
-            <form className="p-6 flex flex-col justify-center">
+            <form
+              className="p-6 flex flex-col justify-center"
+              onSubmit={handleSubmit}
+            >
               <div className="flex flex-col">
                 <label for="name" className="hidden">
                   Full Name
@@ -95,6 +138,7 @@ export default function Contact() {
                   name="name"
                   id="name"
                   placeholder="Full Name"
+                  onChange={(e) => setName(e.target.value)}
                   className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
                 />
               </div>
@@ -108,21 +152,17 @@ export default function Contact() {
                   name="email"
                   id="email"
                   placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
                 />
               </div>
 
               <div className="flex flex-col mt-2">
-                <label for="tel" className="hidden">
-                  Numb
-                </label>
-                <input
-                  type="tel"
-                  name="tel"
-                  id="tel"
-                  placeholder="Telephone Number"
+                <textarea
+                  placeholder="Message Here"
+                  onChange={(e) => setMessage(e.target.value)}
                   className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
-                />
+                ></textarea>
               </div>
 
               <button
@@ -133,8 +173,13 @@ export default function Contact() {
               </button>
             </form>
           </div>
+          {status && (
+            <p className="mt-4 text-xl text-center text-gray-900">{status}</p>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Contact;

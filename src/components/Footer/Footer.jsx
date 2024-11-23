@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useUser } from "../../Context/UserContext";
+import logo from "../../assets/logo.png";
 function Footer() {
   const { user, setUser } = useUser();
   let navigate = useNavigate();
@@ -15,12 +16,8 @@ function Footer() {
         <div className="mx-auto w-full max-w-screen-xl py-2 p-4 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0 ">
-              <Link to="/" className="flex items-center">
-                <img
-                  src="https://alexharkness.com/wp-content/uploads/2020/06/logo-2.png"
-                  alt="logo"
-                  className="mr-3   h-16"
-                />
+              <Link to="/home" className="flex items-center">
+                <img src={logo} alt="logo" className="mr-3   h-16" />
               </Link>
             </div>
             <div className="grid grid-cols-2  gap-8 sm:gap-6 sm:grid-cols-3 ">
@@ -29,8 +26,8 @@ function Footer() {
                   Resources
                 </h2>
                 {user ? (
-                  <ul className="text-gray-500 font-medium gap-">
-                    <li>
+                  <ul className="text-gray-500 font-medium ">
+                    <li className="mb-2">
                       <NavLink
                         to="/home"
                         className={({ isActive }) =>
@@ -45,7 +42,7 @@ function Footer() {
                         Home
                       </NavLink>
                     </li>
-                    <li>
+                    <li className="mb-2">
                       <NavLink
                         to="/about"
                         className={({ isActive }) =>
@@ -60,7 +57,7 @@ function Footer() {
                         About
                       </NavLink>
                     </li>
-                    <li>
+                    <li className="mb-2">
                       <NavLink
                         to="/company"
                         className={({ isActive }) =>
@@ -75,7 +72,7 @@ function Footer() {
                         Company
                       </NavLink>
                     </li>
-                    <li>
+                    <li className="mb-2">
                       <NavLink
                         to="/features"
                         className={({ isActive }) =>
@@ -90,7 +87,7 @@ function Footer() {
                         Features
                       </NavLink>
                     </li>
-                    <li>
+                    <li className="mb-2">
                       <NavLink
                         to="/user"
                         className={({ isActive }) =>
@@ -105,7 +102,7 @@ function Footer() {
                         User
                       </NavLink>
                     </li>
-                    <li>
+                    <li className="mb-2">
                       <NavLink
                         to="/rewards"
                         className={({ isActive }) =>
@@ -120,7 +117,7 @@ function Footer() {
                         rewards
                       </NavLink>
                     </li>
-                    <li>
+                    <li className="mb-2">
                       <NavLink
                         to="/focus"
                         className={({ isActive }) =>
@@ -135,7 +132,7 @@ function Footer() {
                         FocusMode
                       </NavLink>
                     </li>
-                    <li>
+                    <li className="mb-2">
                       <NavLink
                         to="/settings"
                         className={({ isActive }) =>
@@ -150,7 +147,7 @@ function Footer() {
                         Settings
                       </NavLink>
                     </li>
-                    <li>
+                    <li className="mb-2">
                       <NavLink
                         to="/i"
                         className={({ isActive }) =>

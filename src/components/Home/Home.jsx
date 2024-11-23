@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center text-center px-6 py-16">
-      <h1 className="text-5xl font-bold mb-6">
+      <h1 className="text-3xl sm:text-5xl font-bold mb-6">
         Take Control of Your Screen Time Today!
       </h1>
       <p className="text-lg text-gray-700 mb-8">

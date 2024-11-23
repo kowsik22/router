@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useUser } from "../../Context/UserContext";
+import logo from "../../assets/logo.png";
 
 export default function Header() {
   const { user, setUser } = useUser();
@@ -15,12 +16,8 @@ export default function Header() {
     <header className="shadow sticky z-50   top-0">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <Link to="/" className="flex items-center">
-            <img
-              src="https://alexharkness.com/wp-content/uploads/2020/06/logo-.png"
-              className="mr-3 h-12"
-              alt="Logo"
-            />
+          <Link to="/home" className="flex items-center">
+            <img src={logo} className="mr-3 h-12" alt="Logo" />
           </Link>
           <div className="flex items-center lg:order-2">
             {user ? (
@@ -88,7 +85,7 @@ export default function Header() {
                                         } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                     }
                   >
-                    Company
+                    Contact Us
                   </NavLink>
                 </li>
                 <li>
@@ -226,7 +223,7 @@ export default function Header() {
                                         } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                     }
                   >
-                    Company
+                    Contact Us
                   </NavLink>
                 </li>
                 <li>
