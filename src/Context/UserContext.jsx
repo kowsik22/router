@@ -3,38 +3,37 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  // Manage user data
   const [user, setUser] = useState(null);
   const [isHydrated, setIsHydrated] = useState(false);
 
-  // Manage screen usage data
+  // Initialize usage data from localStorage or default apps
   const [usageData, setUsageData] = useState(() => {
     const savedUsageData = localStorage.getItem("usageData");
     return savedUsageData
       ? JSON.parse(savedUsageData)
       : [
-          { app: "Instagram", time: 0 },
-          { app: "YouTube", time: 0 },
-          { app: "Twitter", time: 0 },
-        ]; // Default apps
+          { app: "Instagram", time: 10 },
+          { app: "YouTube", time: 10 },
+          { app: "Twitter", time: 9 },
+        ];
   });
 
   const [focusMode, setFocusMode] = useState(() => {
     const savedFocusMode = localStorage.getItem("focusMode");
-    return savedFocusMode ? JSON.parse(savedFocusMode) : false; // Default: Focus Mode off
+    return savedFocusMode ? JSON.parse(savedFocusMode) : false;
   });
 
   const [lockedPages, setLockedPages] = useState(() => {
     const savedLockedPages = localStorage.getItem("lockedPages");
-    return savedLockedPages ? JSON.parse(savedLockedPages) : []; // Default: No locked pages
+    return savedLockedPages ? JSON.parse(savedLockedPages) : [];
   });
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
-      setUser(JSON.parse(savedUser)); // Restore user state
+      setUser(JSON.parse(savedUser));
     }
-    setIsHydrated(true); // Mark hydration complete
+    setIsHydrated(true);
   }, []);
 
   useEffect(() => {
@@ -49,14 +48,18 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("lockedPages", JSON.stringify(lockedPages));
   }, [lockedPages]);
 
+  const updateUsageData = (updater) => {
+    setUsageData((prevData) => {
+      const newData =
+        typeof updater === "function" ? updater(prevData) : updater;
+      localStorage.setItem("usageData", JSON.stringify(newData));
+      return newData;
+    });
+  };
+
   if (!isHydrated) {
     return null; // Render nothing until hydration is complete
   }
-
-  // Function to update usage data
-  const updateUsageData = (newData) => {
-    setUsageData(newData);
-  };
 
   return (
     <UserContext.Provider
@@ -77,5 +80,4 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use context data
 export const useUser = () => useContext(UserContext);

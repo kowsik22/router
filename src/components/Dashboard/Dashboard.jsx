@@ -4,7 +4,7 @@ import { useUser } from "../../Context/UserContext";
 const Dashboard = () => {
   const { usageData, updateUsageData } = useUser();
 
-  // Load usage data from localStorage on first render
+  // Load usage data from localStorage on the first render
   useEffect(() => {
     const savedUsageData = localStorage.getItem("usageData");
     if (savedUsageData) {
@@ -15,17 +15,18 @@ const Dashboard = () => {
   // Update usage data every minute
   useEffect(() => {
     const interval = setInterval(() => {
-      const newUsageData = usageData.map((app) => ({
-        ...app,
-        time: app.time + Math.floor(Math.random() * 1), // Simulate random usage
-      }));
-
-      updateUsageData(newUsageData); // Update usage data in context
-      localStorage.setItem("usageData", JSON.stringify(newUsageData)); // Persist updates
+      updateUsageData((prevData) => {
+        const newUsageData = prevData.map((app) => ({
+          ...app,
+          time: app.time + Math.floor(Math.random() * 1), // Simulate random usage
+        }));
+        localStorage.setItem("usageData", JSON.stringify(newUsageData)); // Persist updates
+        return newUsageData; // Update the state
+      });
     }, 10000); // Update every 10 seconds for testing
 
     return () => clearInterval(interval); // Cleanup interval on unmount
-  }, [usageData, updateUsageData]);
+  }, [updateUsageData]);
 
   const totalTime = usageData.reduce((total, app) => total + app.time, 0);
 
@@ -35,7 +36,7 @@ const Dashboard = () => {
       <p className="text-lg mb-4">Total Time Today: {totalTime} minutes</p>
       <ul className="list-disc pl-5 flex" style={{ flexDirection: "column" }}>
         {usageData.map((app) => (
-          <li key={app.app} className="mb-2 " style={{ listStyleType: "none" }}>
+          <li key={app.app} className="mb-2" style={{ listStyleType: "none" }}>
             {app.app}: {app.time} minutes
           </li>
         ))}
