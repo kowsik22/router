@@ -1,34 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "../../Context/UserContext";
 
 const Dashboard = () => {
+  // Initialize usage data from localStorage or use default values
   const { usageData, updateUsageData } = useUser();
+  const totalLimit = 120; // Maximum allowed total screen time
 
-  // Load usage data from localStorage on the first render
-  useEffect(() => {
-    const savedUsageData = localStorage.getItem("usageData");
-    if (savedUsageData) {
-      updateUsageData(JSON.parse(savedUsageData));
-    }
-  }, [updateUsageData]);
+  // Function to calculate the total screen time
+  const calculateTotalTime = (data) =>
+    data.reduce((sum, app) => sum + app.time, 0);
 
-  // Update usage data every minute
+  // UseEffect to simulate usage data updates every second
   useEffect(() => {
     const interval = setInterval(() => {
       updateUsageData((prevData) => {
-        const newUsageData = prevData.map((app) => ({
-          ...app,
-          time: app.time + Math.floor(Math.random() * 1), // Simulate random usage
-        }));
-        localStorage.setItem("usageData", JSON.stringify(newUsageData)); // Persist updates
-        return newUsageData; // Update the state
+        // Calculate the total time for all apps
+        const totalTime = calculateTotalTime(prevData);
+        const remainingTime = totalLimit - totalTime; // Time remaining to stay within 120 minutes
+
+        if (remainingTime <= 0) {
+          // If total time exceeds the limit, stop further increments
+          return prevData;
+        }
+
+        const newUsageData = prevData.map((app) => {
+          if (app.time >= 120) {
+            // Prevent time from exceeding 120 minutes for any app
+            return app;
+          }
+
+          // Random time increment between 0 and remainingTime
+          const maxIncrement = Math.min(remainingTime, 2, 120 - app.time); // Max increment per app
+          const increment = Math.floor(Math.random() * (maxIncrement + 1)); // Ensure no negative increments
+
+          return { ...app, time: app.time + increment };
+        });
+
+        return newUsageData;
       });
-    }, 10000); // Update every 10 seconds for testing
+    }, 10000); // Update every second
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [updateUsageData]);
 
-  const totalTime = usageData.reduce((total, app) => total + app.time, 0);
+  // Calculate total time across all apps
+  const totalTime = calculateTotalTime(usageData);
 
   return (
     <div className="p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto mt-8 mb-4">

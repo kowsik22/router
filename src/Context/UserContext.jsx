@@ -12,22 +12,35 @@ export const UserProvider = ({ children }) => {
     return savedUsageData
       ? JSON.parse(savedUsageData)
       : [
-          { app: "Instagram", time: 10 },
-          { app: "YouTube", time: 10 },
-          { app: "Twitter", time: 9 },
+          { app: "Instagram", time: 0 },
+          { app: "YouTube", time: 0 },
+          { app: "Twitter", time: 0 },
         ];
   });
 
+  useEffect(() => {
+    localStorage.setItem("usageData", JSON.stringify(usageData));
+  }, [usageData]);
+
+  // Screen time limit for the dashboard
+  const [totalLimit, setTotalLimit] = useState(() => {
+    const savedLimit = localStorage.getItem("totalLimit");
+    return savedLimit ? JSON.parse(savedLimit) : 120; // Default limit is 120 minutes
+  });
+
+  // Focus Mode state
   const [focusMode, setFocusMode] = useState(() => {
     const savedFocusMode = localStorage.getItem("focusMode");
     return savedFocusMode ? JSON.parse(savedFocusMode) : false;
   });
 
+  // Locked Pages state
   const [lockedPages, setLockedPages] = useState(() => {
     const savedLockedPages = localStorage.getItem("lockedPages");
     return savedLockedPages ? JSON.parse(savedLockedPages) : [];
   });
 
+  // Hydrate user from localStorage on app load
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
@@ -36,6 +49,7 @@ export const UserProvider = ({ children }) => {
     setIsHydrated(true);
   }, []);
 
+  // Save user data to localStorage
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
@@ -44,10 +58,17 @@ export const UserProvider = ({ children }) => {
     }
   }, [user]);
 
+  // Save lockedPages to localStorage
   useEffect(() => {
     localStorage.setItem("lockedPages", JSON.stringify(lockedPages));
   }, [lockedPages]);
 
+  // Save totalLimit to localStorage
+  useEffect(() => {
+    localStorage.setItem("totalLimit", JSON.stringify(totalLimit));
+  }, [totalLimit]);
+
+  // Function to update usage data
   const updateUsageData = (updater) => {
     setUsageData((prevData) => {
       const newData =
@@ -67,8 +88,9 @@ export const UserProvider = ({ children }) => {
         user,
         setUser,
         usageData,
-        setUsageData,
         updateUsageData,
+        totalLimit,
+        setTotalLimit,
         focusMode,
         setFocusMode,
         lockedPages,
@@ -80,4 +102,5 @@ export const UserProvider = ({ children }) => {
   );
 };
 
+// Custom hook to use context data
 export const useUser = () => useContext(UserContext);
