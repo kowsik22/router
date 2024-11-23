@@ -1,6 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useUser } from "../../Context/UserContext";
 function Footer() {
+  const { user, setUser } = useUser();
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/login");
+  };
   return (
     <>
       <footer className="bg-white border-y">
@@ -15,45 +23,185 @@ function Footer() {
                 />
               </Link>
             </div>
-            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 ">
+            <div className="grid grid-cols-2  gap-8 sm:gap-6 sm:grid-cols-3 ">
               <div>
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase hover:text-blue-400">
                   Resources
                 </h2>
-                <ul className="text-gray-500 font-medium">
-                  <li className="mb-4">
-                    <Link
-                      to="/"
-                      className="hover:text-decoration-none hover:text-blue-500"
-                    >
-                      Home
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link
-                      to="/about"
-                      className="hover:text-decoration-none hover:text-blue-500"
-                    >
-                      About
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link
-                      to="/user"
-                      className="hover:text-decoration-none hover:text-blue-500"
-                    >
-                      User
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link
-                      to="/company"
-                      className="hover:text-decoration-none hover:text-blue-500"
-                    >
-                      company
-                    </Link>
-                  </li>
-                </ul>
+                {user ? (
+                  <ul className="text-gray-500 font-medium gap-">
+                    <li>
+                      <NavLink
+                        to="/home"
+                        className={({ isActive }) =>
+                          `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                      >
+                        Home
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/about"
+                        className={({ isActive }) =>
+                          `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                      >
+                        About
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/company"
+                        className={({ isActive }) =>
+                          `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                      >
+                        Company
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/features"
+                        className={({ isActive }) =>
+                          `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                      >
+                        Features
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/user"
+                        className={({ isActive }) =>
+                          `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                      >
+                        User
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/rewards"
+                        className={({ isActive }) =>
+                          `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                      >
+                        rewards
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/focus"
+                        className={({ isActive }) =>
+                          `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                      >
+                        FocusMode
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/settings"
+                        className={({ isActive }) =>
+                          `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                      >
+                        Settings
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/i"
+                        className={({ isActive }) =>
+                          `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
+                                        ${
+                                          isActive
+                                            ? "text-orange-700"
+                                            : "text-gray-700"
+                                        } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                        }
+                      >
+                        Insights
+                      </NavLink>
+                    </li>
+                  </ul>
+                ) : (
+                  <ul className="text-gray-500 font-medium">
+                    <li className="mb-4">
+                      <Link
+                        to=""
+                        className="hover:text-decoration-none hover:text-blue-500"
+                      >
+                        Home
+                      </Link>
+                    </li>
+                    <li className="mb-4">
+                      <Link
+                        to=""
+                        className="hover:text-decoration-none hover:text-blue-500"
+                      >
+                        About
+                      </Link>
+                    </li>
+                    <li className="mb-4">
+                      <Link
+                        to=""
+                        className="hover:text-decoration-none hover:text-blue-500"
+                      >
+                        User
+                      </Link>
+                    </li>
+                    <li className="mb-4">
+                      <Link
+                        to=""
+                        className="hover:text-decoration-none hover:text-blue-500"
+                      >
+                        Contact Us
+                      </Link>
+                    </li>
+                  </ul>
+                )}
               </div>
               <div>
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase hover:text-blue-500">
