@@ -20,7 +20,7 @@ const Gamification = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto mt-8">
+    <div className="p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto mt-20 mb-24">
       <h2 className="text-2xl font-bold mb-4">Gamification</h2>
       <p>Total Points: {points}</p>
       <p>You earned: {getBadge(points)}</p>

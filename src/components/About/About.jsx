@@ -12,20 +12,19 @@ export default function About() {
               alt="image"
             />
           </div>
-          <div className="md:7/12 lg:w-6/12">
-            <h2 className="text-2xl text-gray-900 font-bold md:text-4xl">
-              React development is carried out by passionate developers
-            </h2>
-            <p className="mt-6 text-gray-600">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum
-              omnis voluptatem accusantium nemo perspiciatis delectus atque
-              autem! Voluptatum tenetur beatae unde aperiam, repellat expedita
-              consequatur! Officiis id consequatur atque doloremque!
+
+          <div className="p-8">
+            <h1 className="text-4xl font-bold mb-6">About Our App</h1>
+            <p className="text-lg text-gray-700 mb-4">
+              Our app is designed to help users regain control of their screen
+              time by providing tools to monitor, manage, and minimize digital
+              distractions.
             </p>
-            <p className="mt-4 text-gray-600">
-              Nobis minus voluptatibus pariatur dignissimos libero quaerat iure
-              expedita at? Asperiores nemo possimus nesciunt dicta veniam
-              aspernatur quam mollitia.
+            <h2 className="text-2xl font-bold mt-6">Why It Matters</h2>
+            <p className="text-lg text-gray-700">
+              Excessive screen time has been linked to poor productivity,
+              reduced focus, and health issues. Our app aims to create balance
+              and foster mindful usage.
             </p>
           </div>
         </div>

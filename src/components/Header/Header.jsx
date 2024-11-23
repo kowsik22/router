@@ -7,16 +7,17 @@ export default function Header() {
   let navigate = useNavigate();
 
   const handleLogout = () => {
-    setUser(null);
+    setUser(null); // This will also clear localStorage via UserContext
     navigate("/login");
   };
+
   return (
     <header className="shadow sticky z-50   top-0">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link to="/" className="flex items-center">
             <img
-              src="https://alexharkness.com/wp-content/uploads/2020/06/logo-2.png"
+              src="https://alexharkness.com/wp-content/uploads/2020/06/logo-.png"
               className="mr-3 h-12"
               alt="Logo"
             />
@@ -31,13 +32,14 @@ export default function Header() {
               </button>
             ) : (
               <Link
-                to="/"
+                to="/login"
                 className="text-white hover:bg-blue-400 bg-blue-500 border-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
               >
                 Log in
               </Link>
             )}
           </div>
+
           <div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"
@@ -91,7 +93,7 @@ export default function Header() {
                 </li>
                 <li>
                   <NavLink
-                    to="/github"
+                    to="/features"
                     className={({ isActive }) =>
                       `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
                                         ${
@@ -101,7 +103,7 @@ export default function Header() {
                                         } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                     }
                   >
-                    Github
+                    Features
                   </NavLink>
                 </li>
                 <li>

@@ -17,30 +17,89 @@ import Insights from "./components/Insights/Insights.jsx";
 import Settings from "./components/Settings/Settings.jsx";
 import FocusMode from "./components/Focus/Focus.jsx";
 import Gamefication from "./components/Gamification/Gamefication.jsx";
-import Github, { githubInfoLoader } from "./components/Github/Github.jsx";
+import Features from "./components/Features/Features.jsx";
 import { UserProvider } from "./Context/UserContext.jsx";
+import ProtectedRoute from "./components/Protected/Protected.jsx";
 
 const NotFound = () => (
-  <div className="text-center text-2xl  justify-center mb-19 mt-12 ">
-    <h1 className="text-8xl">Welcome🙏</h1>
-    <h1>Please Login to access the website</h1>
+  <div className="text-center text-2xl  justify-center  mt-20 ">
+    <h1 className="text-7xl mb-40">
+      <span className="text-gray-700">Wel</span>
+      <span className="text-red-600">come</span>🙏
+    </h1>
   </div>
 );
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="" element={<Login />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="about" element={<About />} />
-      <Route path="company" element={<Company />} />
-      <Route path="user" element={<User />} />
+      <Route path="/" element={<NotFound />} />
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="about"
+        element={
+          <ProtectedRoute>
+            <About />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="company"
+        element={
+          <ProtectedRoute>
+            <Company />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="user"
+        element={
+          <ProtectedRoute>
+            <User />
+          </ProtectedRoute>
+        }
+      />
       <Route path="Focus" element={<FocusMode />} />
-      <Route path="settings" element={<Settings />} />
-      <Route path="i" element={<Insights />} />
-      <Route path="rewards" element={<Gamefication />} />
-      <Route loader={githubInfoLoader} path="github" element={<Github />} />
-      <Route path="*" element={<NotFound />} />
+      <Route
+        path="settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="i"
+        element={
+          <ProtectedRoute>
+            <Insights />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="rewards"
+        element={
+          <ProtectedRoute>
+            <Gamefication />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="features"
+        element={
+          <ProtectedRoute>
+            <Features />
+          </ProtectedRoute>
+        }
+      />
     </Route>
   )
 );

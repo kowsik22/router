@@ -21,9 +21,9 @@ const Insights = () => {
   ];
 
   return (
-    <div className="p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto mt-8">
+    <div className="p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto mb-8 mt-8">
       <h2 className="text-2xl font-bold mb-4">Weekly Insights</h2>
-      <LineChart width={400} height={300} data={data}>
+      <LineChart width={300} height={300} className="sm:ml-0" data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="day" />
         <YAxis />

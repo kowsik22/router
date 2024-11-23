@@ -2,44 +2,40 @@ import React, { useEffect } from "react";
 import { useUser } from "../../Context/UserContext";
 
 const Dashboard = () => {
-  // Access user data and usage data from context
   const { usageData, updateUsageData } = useUser();
 
-  // Initialize usage data from localStorage if available
+  // Load usage data from localStorage on first render
   useEffect(() => {
     const savedUsageData = localStorage.getItem("usageData");
     if (savedUsageData) {
-      // Set usageData to what was stored in localStorage
       updateUsageData(JSON.parse(savedUsageData));
     }
   }, [updateUsageData]);
 
-  // Simulate updating usage data every minute (this simulates real-time)
+  // Update usage data every minute
   useEffect(() => {
     const interval = setInterval(() => {
       const newUsageData = usageData.map((app) => ({
         ...app,
-        time: app.time + Math.floor(Math.random() * 1), // Add random time
+        time: app.time + Math.floor(Math.random() * 1), // Simulate random usage
       }));
 
-      // Update usage data and persist it in localStorage
-      updateUsageData(newUsageData);
-      localStorage.setItem("usageData", JSON.stringify(newUsageData));
-    }, 10000); // Every 1 minute
+      updateUsageData(newUsageData); // Update usage data in context
+      localStorage.setItem("usageData", JSON.stringify(newUsageData)); // Persist updates
+    }, 10000); // Update every 10 seconds for testing
 
-    // Cleanup the interval when the component unmounts
-    return () => clearInterval(interval);
-  }, [usageData, updateUsageData]); // Only set up the interval once
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [usageData, updateUsageData]);
 
   const totalTime = usageData.reduce((total, app) => total + app.time, 0);
 
   return (
-    <div className="p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto mt-8">
+    <div className="p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto mt-8 mb-4">
       <h2 className="text-2xl font-bold mb-4">Screen Usage Stats</h2>
       <p className="text-lg mb-4">Total Time Today: {totalTime} minutes</p>
-      <ul className="list-disc pl-5">
+      <ul className="list-disc pl-5 flex" style={{ flexDirection: "column" }}>
         {usageData.map((app) => (
-          <li key={app.app} className="mb-2">
+          <li key={app.app} className="mb-2 " style={{ listStyleType: "none" }}>
             {app.app}: {app.time} minutes
           </li>
         ))}
